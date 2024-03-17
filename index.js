@@ -26,27 +26,21 @@ export const sendJSON = (key, obj, customElementId) => {
  * @returns {{customElement: HTMLElement, rootDiv: HTMLDivElement}}
  */
 export function setupForReact(fonts, styles, customElement) {
-    const rootDiv = document.createElement("div");
-    rootDiv.id = 'root';
-
+    customElement.rootDiv.id = 'root';
     customElement.attachShadow({ mode: "open" });
-
     let fontsHtmlReady = '';
     if (fonts) {
         for (const f of fonts) {
             fontsHtmlReady = fontsHtmlReady + f + '\n';
         }
     }
-
     let stylesHtmlReady = '';
     if (styles) {
         for (const s of styles) {
             stylesHtmlReady = stylesHtmlReady + s + '\n';
         }
     }
-
     customElement.shadowRoot.innerHTML = `${fonts ? fontsHtmlReady : ''}\n${styles ? stylesHtmlReady : ''}`;
-    customElement.shadowRoot.appendChild(this.rootDiv);
-
-    return { rootDiv, customElement };
+    customElement.shadowRoot.appendChild(customElement.rootDiv);
+    return customElement;
 }
