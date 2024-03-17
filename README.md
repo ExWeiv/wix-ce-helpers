@@ -20,6 +20,8 @@ $w.onReady(() => {
 Example usage of ReactElement class:
 
 ```js
+import { ReactElement } from "@exweiv/wix-ce-helpers";
+
 const fonts = [...];
 const styles = [...];
 
@@ -29,4 +31,5 @@ class ExampleCustomComponent extends ReactElement {
   }
 }
 ```
+
 > This will help you to build React based custom elements faster
