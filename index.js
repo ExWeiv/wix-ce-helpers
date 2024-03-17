@@ -15,35 +15,38 @@ export const sendJSON = (key, obj, customElementId) => {
     return null;
 }
 
-export class ReactElement extends HTMLElement {
-    rootDiv = document.createElement("div");
+/**
+ * Setups styles (CSS) and fonts for you.
+ * 
+ * @function
+ * @param {Array<string>} fonts 
+ * @param {Array<string>} styles 
+ * @param {HTMLElement} customElement 
+ * 
+ * @returns {{customElement: HTMLElement, rootDiv: HTMLDivElement}}
+ */
+export function setupForReact(fonts, styles, customElement) {
+    const rootDiv = document.createElement("div");
+    rootDiv.id = 'root';
 
-    /**
-     * Setups styles (CSS) and fonts for you.
-     * 
-     * @param {Array<string>} styles 
-     * @param {Array<string>} fonts 
-     */
-    constructor(styles, fonts) {
-        super();
-        this.attachShadow({ mode: "open" });
-        this.rootDiv.id = 'root';
+    customElement.attachShadow({ mode: "open" });
 
-        let fontsHtmlReady = '';
-        if (fonts) {
-            for (const f of fonts) {
-                fontsHtmlReady = fontsHtmlReady + f + '\n';
-            }
+    let fontsHtmlReady = '';
+    if (fonts) {
+        for (const f of fonts) {
+            fontsHtmlReady = fontsHtmlReady + f + '\n';
         }
-
-        let stylesHtmlReady = '';
-        if (styles) {
-            for (const s of styles) {
-                stylesHtmlReady = stylesHtmlReady + s + '\n';
-            }
-        }
-
-        this.shadowRoot.innerHTML = `${fonts ? fontsHtmlReady : ''}\n${styles ? stylesHtmlReady : ''}`;
-        this.shadowRoot.appendChild(this.rootDiv);
     }
+
+    let stylesHtmlReady = '';
+    if (styles) {
+        for (const s of styles) {
+            stylesHtmlReady = stylesHtmlReady + s + '\n';
+        }
+    }
+
+    customElement.shadowRoot.innerHTML = `${fonts ? fontsHtmlReady : ''}\n${styles ? stylesHtmlReady : ''}`;
+    customElement.shadowRoot.appendChild(this.rootDiv);
+
+    return { rootDiv, customElement };
 }
