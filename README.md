@@ -2,7 +2,7 @@
 
 This package contain/s basic helpers to use in frontend for custom elements in Wix.
 
-Example usage:
+Example usage of sendJSON:
 
 ```js
 // Import sendJSON for sending object data as JSON to custom element
@@ -16,3 +16,17 @@ $w.onReady(() => {
   });
 });
 ```
+
+Example usage of ReactElement class:
+
+```js
+const fonts = [...];
+const styles = [...];
+
+class ExampleCustomComponent extends ReactElement {
+  constructor(styles, fonts) {
+    //
+  }
+}
+```
+> This will help you to build React based custom elements faster
