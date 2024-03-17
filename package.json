@@ -1,0 +1,36 @@
+{
+  "name": "@exweiv/wix-ce-helpers",
+  "version": "0.0.1",
+  "description": "Custom element helpers for Wix powered websites/web apps",
+  "main": "index.js",
+  "keywords": [
+    "velo",
+    "wix",
+    "exweiv",
+    "wix-ce-helpers"
+  ],
+  "author": {
+    "name": "ExWeiv Apps Team",
+    "email": "info@apps.exweiv.com"
+  },
+  "license": "UNLICENSED",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "repository": {
+    "url": "git@github.com:ExWeiv/wix-ce-helpers.git",
+    "type": "git"
+  },
+  "bugs": {
+    "url": "https://github.com/ExWeiv/wix-ce-helpers/issues",
+    "email": "info@apps.exweiv.com"
+  },
+  "contributors": [
+    {
+      "name": "Enes Bekar",
+      "url": "https://github.com/l0eix"
+    }
+  ],
+  "type": "module"
+}
