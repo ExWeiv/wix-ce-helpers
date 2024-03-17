@@ -16,7 +16,7 @@ export const sendJSON = (key, obj, customElementId) => {
 }
 
 export class ReactElement extends HTMLElement {
-    mountDiv = document.createElement("div");
+    rootDiv = document.createElement("div");
 
     /**
      * Setups styles (CSS) and fonts for you.
@@ -27,7 +27,7 @@ export class ReactElement extends HTMLElement {
     constructor(styles, fonts) {
         super();
         this.attachShadow({ mode: "open" });
-        this.mountDiv.id = 'root';
+        this.rootDiv.id = 'root';
 
         let fontsHtmlReady = '';
         if (fonts) {
@@ -44,6 +44,6 @@ export class ReactElement extends HTMLElement {
         }
 
         this.shadowRoot.innerHTML = `${fonts ? fontsHtmlReady : ''}\n${styles ? stylesHtmlReady : ''}`;
-        this.shadowRoot.appendChild(this.mountDiv);
+        this.shadowRoot.appendChild(this.rootDiv);
     }
 }
