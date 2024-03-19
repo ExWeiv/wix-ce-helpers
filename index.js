@@ -31,7 +31,11 @@ export function setupForReact(fonts, styles, customElement) {
     let fontsHtmlReady = '';
     if (fonts) {
         for (const f of fonts) {
-            fontsHtmlReady = fontsHtmlReady + f + '\n';
+            if (f.includes('<link')) {
+                fontsHtmlReady = fontsHtmlReady + f + '\n';
+            } else {
+                fontsHtmlReady = fontsHtmlReady + `<link href="${f}" rel="stylesheet">` + '\n';
+            }
         }
     }
     let stylesHtmlReady = '';

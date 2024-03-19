@@ -20,6 +20,10 @@ $w.onReady(() => {
 Example usage of setupForReact function:
 
 ```js
+/// <reference lib="dom" />
+
+// Custom Element Example
+
 import React from "react";
 import ReactDOM from "react-dom";
 import Counter from "../components/Counter";
@@ -30,15 +34,19 @@ const fonts = [
   `<link rel="preconnect" href="https://fonts.googleapis.com">`,
   `<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>`,
   `<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">`
-]
+];
+
+// or you can also pass links only
+
+const fonts = ["https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"];
 
 class CounterReactExample extends HTMLElement {
-  customElement = this;
   rootDiv = document.createElement("div");
 
   constructor() {
     super();
-    setupForReact([styles], fonts, this);
+    setupForReact(fonts, [styles], this);
+    this.render(this.getAttribute("props"));
   }
 
   // Attributes keys that's listened for changes
@@ -53,11 +61,15 @@ class CounterReactExample extends HTMLElement {
    */
   attributeChangedCallback(name, oldValue, newValue) {
     if (name === "props") {
-      // Create another HTML element to mount into div element + pass props as JS object
-      const app = React.createElement(Counter, { ...JSON.parse(newValue), customElement: this.customElement });
-      // Mount created app to div and render (after first mount it will only render changed elements)
-      ReactDOM.render(app, this.rootDiv);
+      this.render(newValue);
     }
+  }
+
+  render(props) {
+    // Create another HTML element to mount into div element + pass props as JS object
+    const app = React.createElement(Counter, { ...JSON.parse(props), customElement: this });
+    // Mount created app to div and render (after first mount it will only render changed elements)
+    ReactDOM.render(app, this.rootDiv);
   }
 }
 
