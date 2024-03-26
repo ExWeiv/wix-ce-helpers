@@ -77,3 +77,9 @@ customElements.define("react-counter-example", CounterReactExample);
 ```
 
 > This will help you to build React based custom elements faster. You can pass null if you don't want to set one of the options except custom element.
+
+---
+
+[Kolay Gelsin](https://medium.com/the-optimists-daily/kolay-gelsin-a-turkish-expression-we-should-all-know-and-use-83fc1207ae5d) 💜
+
+<img src="https://static.wixstatic.com/media/510eca_399a582544de4cb2b958ce934578097f~mv2.png">
